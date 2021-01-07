@@ -12,4 +12,21 @@ export class EventThumbnailComponent {
   handleClick() {
     this.onClick.emit('foo!');
   }
+
+  /** determines if the event object parameter has
+   * all the necessary properties defined **/
+  isValidEvent(event: any) {
+    if (
+      event &&
+      event.name &&
+      event.time &&
+      event.date &&
+      event.price &&
+      event.location
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
