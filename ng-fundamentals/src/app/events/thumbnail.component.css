@@ -1,0 +1,44 @@
+.event {
+    display: flex;
+    flex-direction: column;
+    padding:  1rem;
+    background-color: burlywood;
+    border-radius: 1rem;
+}
+.event div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.event .event-header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.event .event-details  {
+    display: grid;
+    grid-template-columns: 100%;
+}
+.event .event-details div {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.event > .event-footer {
+    display: flex;
+    justify-content: center;
+}
+.event .event-footer button {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.507);
+    color: burlywood;
+}
+.event .event-footer button:hover {
+    background-color: rgb(0, 0, 0);
+    transition: all 0.5s ease;
+}
