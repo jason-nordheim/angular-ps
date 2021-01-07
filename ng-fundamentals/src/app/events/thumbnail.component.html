@@ -1,0 +1,37 @@
+<div class="event">
+  <div class="event-header">
+    <h4>{{ event.name }}</h4>
+  </div>
+
+  <div class="event-details">
+    <div>
+      <span>Date: </span>
+      <span>{{ event.date }}</span>
+    </div>
+    <div>
+      <span>Time: </span>
+      <span>{{ event.time }}</span>
+    </div>
+    <div>
+      <span>Price: </span>
+      <span>{{ event.price }}</span>
+    </div>
+    <div>
+      <span>Location: </span>
+      <span>
+        {{
+          event.location.address +
+            ", " +
+            event.location.city +
+            ", " +
+            event.location.country
+        }}
+      </span>
+    </div>
+  </div>
+
+  
+  <div class="event-footer">
+    <button>Click me!</button>
+  </div>
+</div>
