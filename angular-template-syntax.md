@@ -427,3 +427,9 @@ So the only change of the components template code is adding `*ngIf="isValidEven
 | Before                | After                                             |
 | --------------------- | ------------------------------------------------- |
 | `<div class="event">` | `<div *ngIf="isValidEvent(event)" class="event">` |
+
+> This removes the component from the elements being rendered to the DOM by Angular. If you are going to show/hide elements frequently, you would want to change the CSS of the element to `hidden` rather than frequently mutating the DOM ( for performance ). You could also use `*ngIf` to conditionally bind the `hidden` property of the element to `true` or `false` depending on the result of the `isValidEvent(event)` function invocation.
+
+
+### 
+
