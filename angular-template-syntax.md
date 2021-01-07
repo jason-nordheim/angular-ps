@@ -329,7 +329,7 @@ Dissecting: `<event *ngFor="let event of events" [event]="event"></event>`:
   - `[event]` the name of the property (should be the same as the property defined within the Component class definition)
   - `="event"` the variable to be bound to the `[event]` property (aliased in `*ngFor`)
 
-### Building on `*ngFor` with `*ngIf`
+### Conditional Rendering
 
 When using the `*ngFor` directive, it is important to keep in mind that any irregularities of the collection being repeated (looped) could fail if the data is not in the expected format (e.g. the `event` object doesn't have a `name` property). So given the components defined above, any of the following could cause an exception:
 
@@ -339,6 +339,8 @@ When using the `*ngFor` directive, it is important to keep in mind that any irre
 - `event.date` is `null` or `undefined`
 - `event.price` is `null` or `undefined`
 - `event.location` is `null` or `undefined`
+
+#### Rendering based on boolean condition
 
 Within the `EventComponent`, we could use `*ngIf` ( another _Structural Directive_ ) to define what angular should do if any of these conditions occur.
 
@@ -430,6 +432,34 @@ So the only change of the components template code is adding `*ngIf="isValidEven
 
 > This removes the component from the elements being rendered to the DOM by Angular. If you are going to show/hide elements frequently, you would want to change the CSS of the element to `hidden` rather than frequently mutating the DOM ( for performance ). You could also use `*ngIf` to conditionally bind the `hidden` property of the element to `true` or `false` depending on the result of the `isValidEvent(event)` function invocation.
 
+### Advanced Conditional Rendering
 
-### 
+While we could build functions that evaluate to boolean values and place a `*ngIf` on a number of elements, Angular provides the `ngSwitch` directive for conditionally rendering elements/components depending on the conditions defined within a switch statement.
 
+There are two main parts to an `ngSwitch` directive
+
+1. binding `ngSwitch` as a property on a wrapper element
+2. binding either the `*ngSwitchCase` directive or `*ngSwitchDefault` directive to elements within the wrapper
+
+Binding the `ngSwitch` directive to the wrapper component is done by placing the `ngSwitch` directive between square-brackets (e.g. `[ngSwitch]`) and then defining the case that will variable to be compared for each `*ngSwitchCase`.
+
+```html
+<div [ngSwitch]="event.location.country" class="wrapper">
+  <!-- children components (*ngSwitchCase and *ngSwitchDefault ) -->
+  <span>Continent: </span>
+  <span *ngSwitchCase="England">Europe</span>
+  <span *ngSwitchCase="France">Europe</span>
+  <span *ngSwitchCase="United Kingdom">Europe</span>
+  <span *ngSwitchCase="USA">North America</span>
+  <span *ngSwitchCase="United States of America">North America</span>
+  <span *ngSwitchCase="China">Asia</span>
+  <span *ngSwitchCase="India">Asia</span>
+  <span *ngSwitchDefault>Unknown</span>
+</div>
+```
+
+In the following component template definition, we are stating that within the `<div class="wrapper">`, we will have a variety of children elements that we want to conditionally render based on the evaluation of a switch statement.
+
+Each of the children elements with `*ngSwitchCase` directive applied, will take the variable provided to `[ngSwitch]="event.location.country"` (e.g `event.location.country`) and compare it to the provided value placed between the quotes (e.g. `"England"`, `"France"`, etc). If the condition evaluates to `true` the element will be rendered as part of the DOM, however if none of conditions specified for any of the elements with the `*ngSwitchCase` evaluate to `true`, then the element with the `*ngSwitchDefault` applied will be rendered.
+
+> Elements without an `*ngSwitchCase` or `*ngSwitchDefault` directive will be rendered regardless of the value.
