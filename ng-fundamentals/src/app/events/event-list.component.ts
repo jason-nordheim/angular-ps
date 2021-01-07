@@ -12,11 +12,21 @@ import { Component } from '@angular/core';
           <th>Date</th>
           <th>Time</th>
           <th>Price</th>
+          <th>Location</th>
         </tr>
         <tr>
           <td>{{ event.date }}</td>
           <td>{{ event.time }}</td>
-          <td>{{ event.price }}</td>
+          <td>$ {{ event.price }}</td>
+          <td>
+            {{
+              event.location.address +
+                ', ' +
+                event.location.city +
+                ', ' +
+                event.location.country
+            }}
+          </td>
         </tr>
       </table>
     </div>
