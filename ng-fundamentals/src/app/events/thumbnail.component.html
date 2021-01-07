@@ -4,29 +4,18 @@
   </div>
 
   <div class="event-details">
+    <div>Date: {{ event.date }}</div>
+    <div>Time:{{ event.time }}</div>
+    <div>Price:{{ event.price }}</div>
     <div>
-      <span>Date: </span>
-      <span>{{ event.date }}</span>
-    </div>
-    <div>
-      <span>Time: </span>
-      <span>{{ event.time }}</span>
-    </div>
-    <div>
-      <span>Price: </span>
-      <span>{{ event.price }}</span>
-    </div>
-    <div>
-      <span>Location: </span>
-      <span>
-        {{
-          event.location.address +
-            ", " +
-            event.location.city +
-            ", " +
-            event.location.country
-        }}
-      </span>
+      Location:
+      {{
+        event.location.address +
+          ", " +
+          event.location.city +
+          ", " +
+          event.location.country
+      }}
     </div>
   </div>
 
