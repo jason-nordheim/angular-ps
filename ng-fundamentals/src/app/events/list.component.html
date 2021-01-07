@@ -1,6 +1,6 @@
 <h2>Event List</h2>
 <hr />
 <div class="event-list">
-  <app-event-thumb (onClick)="eventClicked($event)" [event]="event1">
+  <app-event-thumb *ngFor="let event of events" [event]="event">
   </app-event-thumb>
 </div>
